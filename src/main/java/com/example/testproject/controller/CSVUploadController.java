@@ -17,7 +17,7 @@ public class CSVUploadController {
         this.dataReadService = dataReadService;
     }
 
-    @PostMapping
+    @PostMapping(produces="text/plain;charset=utf-8")
     public ResponseEntity<String> UploadCsvFile(@RequestBody final LocalFileReadRequestDto localFileReadRequestDto){
         String result = dataReadService.readAndStoreData(localFileReadRequestDto.getFileName(),localFileReadRequestDto.getCharset());
         return ResponseEntity.ok(result);
