@@ -1,2 +1,4 @@
-package com.example.testproject.service;public class DataReadServiceImplTest {
+package com.example.testproject.service;
+
+public class DataReadServiceImplTest {
 }

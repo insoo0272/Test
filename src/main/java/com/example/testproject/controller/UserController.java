@@ -21,7 +21,7 @@ public class UserController {
         return ResponseEntity.ok(userService.login(loginRequest.getUserId(),loginRequest.getPassword()));
     }
 
-    @PostMapping("/signup")
+    @PostMapping(value= "/signup",produces="text/plain;charset=utf-8")
     public ResponseEntity<String> signUp(@RequestBody LoginRequestDto loginRequest){
         userService.signUp(loginRequest.getUserId(), loginRequest.getPassword());
         return ResponseEntity.ok("회원가입 완료");

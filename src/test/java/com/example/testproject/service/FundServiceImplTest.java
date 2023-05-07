@@ -1,2 +1,4 @@
-package com.example.testproject.service;public class FundServiceImplTest {
+package com.example.testproject.service;
+
+public class FundServiceImplTest {
 }
