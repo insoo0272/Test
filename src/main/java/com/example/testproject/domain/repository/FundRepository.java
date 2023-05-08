@@ -10,11 +10,15 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface FundRepository extends JpaRepository<Fund, Long> {
-    @Query(value =
-            "select year, SUM(amount) AS total_amount from fund\n" +
-            "group by year"
-            , nativeQuery = true)
+    // mysql, h2, oracle --> ORM,
+//    @Query(value =
+//            "select year, SUM(amount) AS total_amount from fund\n" +
+//            "group by year"
+//            , nativeQuery = true)
+    @Query(value = "select fund.year, SUM(fund.amount) AS total_amount from Fund fund group by fund.year")
+    // Object[] ?
     List<Object[]> findAllAnualTotalFund();
+    // [[Ent], [], []]
 
     @Query(value =
         "SELECT YEAR, detail.institute_name FROM \n" +
@@ -23,6 +27,9 @@ public interface FundRepository extends JpaRepository<Fund, Long> {
                 "ORDER BY year_amount DESC LIMIT 1",nativeQuery = true)
     List<Object[]> findYearInstituteofMaxFund();
 
+
+    // QueryDSL - library + java(query) / JPQL > ANSI > NATIVE QUERY
+    //
     @Query(value = "SELECT Year, detail.Avgamount from \n" +
             "(SELECT year, ROUND(SUM(amount)/12) AS Avgamount from fund join institute on fund.institute = institute.id \n" +
             "WHERE institute.name = ?1 group by YEAR, institute.name) detail \n" +
