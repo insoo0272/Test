@@ -52,7 +52,6 @@ public class CsvUploadControllerTest {
     @BeforeEach
     public void init(){
         mockMvc = MockMvcBuilders.standaloneSetup(csvUploadController)
-                .addFilters(new CharacterEncodingFilter("UTF-8", true))
                 .alwaysDo(print())
                 .build();
     }
@@ -63,17 +62,13 @@ public class CsvUploadControllerTest {
 
         LocalFileReadRequestDto localFileReadRequestDto = new LocalFileReadRequestDto("사전과제.csv","UTF-8");
 
-        doReturn("업로드가 완료되었습니다.").when(dataReadService).readAndStoreData("사전과제.csv","UTF-8");
+        when(dataReadService.readAndStoreData("사전과제.csv","UTF-8")).thenReturn("업로드가 완료되었습니다.");
 
-        ResultActions resultActions = mockMvc.perform(
-                MockMvcRequestBuilders.post("/api/local-csv")
+        mockMvc.perform(post("/api/local-csv")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new Gson().toJson(localFileReadRequestDto))
-        );
-
-        MvcResult mvcResult = resultActions.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(containsString("업로드가 완료되었습니다.")))
-                .andReturn();
+                        .content(new Gson().toJson(localFileReadRequestDto)))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(containsString("업로드가 완료되었습니다.")));
     }
 
 }

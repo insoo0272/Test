@@ -11,6 +11,7 @@ import java.util.List;
 @Table(name = "INSTITUTE")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Builder
 public class Institute{
 
@@ -18,19 +19,13 @@ public class Institute{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
-    @Setter
     @Column(name="NAME", nullable = false, length = 50)
     private String name;
 
-    @Getter
-    @Setter
     @Column(name="CODE", nullable = false, length = 50)
     private String code;
 
     @JsonIgnore
-    @Setter
-    @Getter
     @OneToMany(mappedBy = "institute")
     @Builder.Default
     private List<Fund> fundList = new ArrayList<>();

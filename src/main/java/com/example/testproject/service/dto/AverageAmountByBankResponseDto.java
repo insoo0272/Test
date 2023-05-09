@@ -1,12 +1,11 @@
 package com.example.testproject.service.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class AverageAmountByBankResponseDto {
     private int year;
     private int avgAmount;

@@ -25,13 +25,13 @@ public class UserServiceImpl implements UserService {
 
     public String login(String userId, String password){
 
-//        Optional<User> user = userRepository.findById(userId);
-//
-//        log.error(user.get().toString());
-//        if(user.isEmpty()){
-//            log.error("No user registered with id {}", userId);
-//            throw new InvalidAuthInfoException("No user registered with given id.");
-//        }
+        Optional<User> user = userRepository.findById(userId);
+
+        log.error(user.get().toString());
+        if(user.isEmpty()){
+            log.error("No user registered with id {}", userId);
+            throw new InvalidAuthInfoException("No user registered with given id.");
+        }
 //        byte[] passwordBytes = user.get().getEncodedPassword().getBytes();
 //        log.error(passwordBytes.toString());
 //        if (!password.equals(new String(Base64.getDecoder().decode(passwordBytes)))) {

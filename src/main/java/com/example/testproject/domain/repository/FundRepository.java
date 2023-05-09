@@ -4,12 +4,17 @@ import com.example.testproject.domain.entity.Fund;
 import com.example.testproject.domain.entity.User;
 import com.example.testproject.service.dto.AnnualTotalAmountResponseDto;
 import com.example.testproject.service.dto.YearofMaxFundResponseDto;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface FundRepository extends JpaRepository<Fund, Long> {
+
+public interface FundRepository extends JpaRepository<Fund, Long>  {
+
     @Query(value =
             "select year, SUM(amount) AS total_amount from fund\n" +
             "group by year"

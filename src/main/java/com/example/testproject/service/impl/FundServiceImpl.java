@@ -26,8 +26,10 @@ public class FundServiceImpl implements FundService {
         List<Object[]> allAndAnnualTotalFunds = fundRepository.findAllAnualTotalFund();
         for (Object[] allAndAnnualTotalFund : allAndAnnualTotalFunds){
             AnnualTotalAmountResponseDto annualTotalAmountResponseDto = new AnnualTotalAmountResponseDto();
-            annualTotalAmountResponseDto.setYear(Integer.parseInt(allAndAnnualTotalFund[0].toString()));
-            annualTotalAmountResponseDto.setTotalAmount(Integer.parseInt((allAndAnnualTotalFund[1].toString())));
+            annualTotalAmountResponseDto.builder()
+                    .year(Integer.parseInt(allAndAnnualTotalFund[0].toString()))
+                    .totalAmount(Integer.parseInt((allAndAnnualTotalFund[1].toString())))
+                    .build();
             annualtotalamounts.add(annualTotalAmountResponseDto);
         }
         return annualtotalamounts;
