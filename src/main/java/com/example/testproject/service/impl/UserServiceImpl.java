@@ -7,6 +7,8 @@ import com.example.testproject.service.UserService;
 import com.example.testproject.support.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
@@ -48,5 +50,10 @@ public class UserServiceImpl implements UserService {
                 .encodedPassword(Base64.getEncoder().encodeToString(password.getBytes()))
                 .build();
         userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }

@@ -4,6 +4,7 @@ import com.example.testproject.service.UserService;
 import com.example.testproject.support.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class AuthenticationConfig {
+public class AuthenticationConfig extends WebMvcAutoConfiguration {
     private final UserService userService;
 
     @Value("${jwt.secret}")

@@ -7,7 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -21,8 +20,6 @@ public class QInstitute extends EntityPathBase<Institute> {
     public static final QInstitute institute = new QInstitute("institute");
 
     public final StringPath code = createString("code");
-
-    public final ListPath<Fund, QFund> fundList = this.<Fund, QFund>createList("fundList", Fund.class, QFund.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 

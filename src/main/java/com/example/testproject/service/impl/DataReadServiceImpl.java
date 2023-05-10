@@ -104,7 +104,7 @@ public class DataReadServiceImpl  implements DataReadService {
                     .institute(institute)
                     .build();
             fundRepository.save(fund);
-            institute.getFundList().add(fund);
+            //institute.getFundList().add(fund);
         }
     }
     public static boolean isNullOrEmpty(String str) {

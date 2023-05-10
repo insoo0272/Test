@@ -25,11 +25,6 @@ public class Institute{
     @Column(name="CODE", nullable = false, length = 50)
     private String code;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "institute")
-    @Builder.Default
-    private List<Fund> fundList = new ArrayList<>();
-
     public Institute(String name, String code) {
         this.name = name;
         this.code = code;
