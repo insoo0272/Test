@@ -45,4 +45,3 @@ class TodoControllerTest {
                 .andExpect(jsonPath("$[0].content").value(content));
     }
 }
-
